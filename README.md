@@ -1,14 +1,16 @@
 # README
 
 <!-- usersテーブル -->
-| Column        | Type   | Options              |
-|               |        |                      |
-| nickname      | string | null: false          |
-| email         | string | null: false , UNIQUE |
-| password      | string | null: false          |
-| name          | string | null: false          |
-| kana_name     | string | null: false          |
-| date_of_birth | string | null: false          |
+| Column             | Type   | Options                   |
+|                    |        |                           |
+| nickname           | string | null: false               |
+| email              | string | null: false ,unique: true |
+| encrypted_password | string | null: false               |
+| last_name          | string | null: false               |
+| first_name         | string | null: false               |
+| kana_last_name     | string | null: false               |
+| kana_first_name    | string | null: false               |
+| date_of_birth      | date   | null: false               |
 
 ### Association
 has_many :items
@@ -19,41 +21,42 @@ has_many :orders
 | Column           | Type       | Options                       |
 |                  |            |                               |
 | item             | string     | null: false                   |
-| category_id      | references | null: false,foreign_key: true |
-| condition_id     | references | null: false,foreign_key: true |
-| delivery_cost_id | references | null: false,foreign_key: true |
-| area_id          | references | null: false,foreign_key: true |
-| shipping_date_id | references | null: false,foreign_key: true |
+| item_text        | text       | null: false                   |
+| category_id      | integer    | null: false                   |
+| condition_id     | integer    | null: false                   |
+| delivery_cost_id | integer    | null: false                   |
+| area_id          | integer    | null: false                   |
+| shipping_date_id | integer    | null: false                   |
 | price            | string     | null: false                   |
-| user_id          | references | null: false,foreign_key: true |
+| user             | references | null: false,foreign_key: true |
 
 ### Association
-belongs_to :users
-has_one :orders
+belongs_to :user
+has_one :order
 
 
 <!-- ordersテーブル -->
 | Column  | Type       | Options                       |
 |         |            |                               |
-| item_id | references | null: false,foreign_key: true |
-| user_id | references | null: false,foreign_key: true |
+| item    | references | null: false,foreign_key: true |
+| user    | references | null: false,foreign_key: true |
 
 ### Association
-belongs_to :items
-belongs_to :users
-has_one :addresses
+belongs_to :item
+belongs_to :user
+has_one :address
 
 
 <!-- addressesテーブル -->
 | Column      | Type       | Options                       |
 |             |            |                               |
 | post        | string     | null: false                   |
-| address_id  | references | null: false,foreign_key: true |
+| address_id  | integer    | null: false                   |
 | area        | string     | null: false                   |
 | detail_area | string     | null: false                   |
 | building    | string     |                               |
 | telephone   | string     | null: false                   |
-| order_id    | references | null: false,foreign_key: true |
+| order       | references | null: false,foreign_key: true |
 
 ### Association
-belongs_to :orders
+belongs_to :order
