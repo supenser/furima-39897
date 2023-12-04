@@ -51,7 +51,7 @@ has_one :address
 | Column      | Type       | Options                       |
 |             |            |                               |
 | post        | string     | null: false                   |
-| address_id  | integer    | null: false                   |
+| area_id     | integer    | null: false                   |
 | area        | string     | null: false                   |
 | detail_area | string     | null: false                   |
 | building    | string     |                               |
@@ -60,3 +60,4 @@ has_one :address
 
 ### Association
 belongs_to :order
+
