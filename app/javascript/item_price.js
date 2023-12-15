@@ -6,7 +6,7 @@ window.addEventListener('turbo:load', () => {
   priceInput.addEventListener("input", () => {
     const price = parseInt(priceInput.value);
     const tax = Math.floor(price * 0.1);
-    const profit = price - tax;
+    const profit = Math.floor(price - tax);
 
     feeDisplay.innerHTML = tax;
     profitDisplay.innerHTML = profit;
