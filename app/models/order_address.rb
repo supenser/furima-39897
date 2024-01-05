@@ -1,6 +1,6 @@
 class OrderAddress
   include ActiveModel::Model
-  attr_accessor :item_id, :user_id, :post, :area_id, :area, :detail_area, :building, :telephone, :order_id
+  attr_accessor :item_id, :user_id, :post, :area_id, :area, :detail_area, :building, :telephone
   
   with_options presence: true do
     validates :post, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Enter it as follows (e.g. 123-4567)"}
@@ -12,9 +12,9 @@ class OrderAddress
   end
   validates :telephone,numericality: {only_integer: true, message: "is invalid. Input only number"}
 
-  def save
-    order = Order.create(item_id: item_id, user_id: user_id)
-    Address.create(post: post, area_id: area_id, area: area, detail_area: detail_area, building: building, telephone: telephone, order_id: order_id)
+  def save(params, user_id)
+    order = Order.create(item_id: params[:item_id], user_id: user_id)
+    Address.create( post: post, area_id: area_id, area: area, detail_area: detail_area, building: building, telephone: telephone, order_id: order_id)
   end
 
 end
