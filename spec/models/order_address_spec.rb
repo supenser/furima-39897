@@ -64,14 +64,17 @@ RSpec.describe OrderAddress, type: :model do
         expect(@order_address.errors.full_messages).to include("Telephone is too short")
       end
 
-      it '電話番号が文字でないと購入できないこと' do
+      it '電話番号が文字でないと購入できない' do
         @order_address.telephone = '０丸011111111'
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Telephone is invalid. Input only number")
       end
 
-
-      
+      it 'tokenが空では登録できない' do
+        @order_address.token = ''
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Token can't be blank")
+      end
 
     end
   end

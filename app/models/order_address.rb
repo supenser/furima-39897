@@ -1,6 +1,6 @@
 class OrderAddress
   include ActiveModel::Model
-  attr_accessor :item_id, :user_id, :post, :area_id, :area, :detail_area, :building, :telephone
+  attr_accessor :item_id, :user_id, :post, :area_id, :area, :detail_area, :building, :telephone, :token
   
   with_options presence: true do
     validates :post, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Enter it as follows (e.g. 123-4567)"}
@@ -8,7 +8,7 @@ class OrderAddress
     validates :area
     validates :detail_area
     validates :telephone,format: {with: /\A\d{10,11}\z/, message: "is too short"}
-
+    validates :token
   end
   validates :telephone,numericality: {only_integer: true, message: "is invalid. Input only number"}
 

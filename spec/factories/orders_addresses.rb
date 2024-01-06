@@ -8,7 +8,7 @@ FactoryBot.define do
     detail_area     { '北2条西4丁目'}
     building        { '赤レンガテラス'}
     telephone       { '09011112222'}
-
+    token           {"tok_abcdefghijk00000000000000000"}
 
     association :user_id
     association :item_id
