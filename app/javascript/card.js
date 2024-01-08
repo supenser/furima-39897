@@ -1,6 +1,7 @@
 const pay = () => {
-  const publicKey = gon.public_key
-  const payjp = Payjp(publicKey)
+  console.log("カード情報トークン化のためのJavaScript");
+  const publicKey = gon.public_key;
+  const payjp = Payjp(publicKey);
   const elements = payjp.elements();
   const numberElement = elements.create('cardNumber');
   const expiryElement = elements.create('cardExpiry');
@@ -27,7 +28,6 @@ const pay = () => {
     e.preventDefault();
   });
 };
-
 
 window.addEventListener("turbo:load", pay);
 window.addEventListener("turbo:render", pay);

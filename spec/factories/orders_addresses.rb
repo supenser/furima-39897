@@ -1,7 +1,6 @@
 FactoryBot.define do
   factory :order_address do
 
-
     post            { '123-4567'}
     area_id         { '2'}
     area            { '札幌市中央区'}
@@ -9,9 +8,7 @@ FactoryBot.define do
     building        { '赤レンガテラス'}
     telephone       { '09011112222'}
     token           {"tok_abcdefghijk00000000000000000"}
-
-    association :user_id
-    association :item_id
-    
+    user_id         {'1'}
+    item_id         {'1'}
   end
 end

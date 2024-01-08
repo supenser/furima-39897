@@ -4,7 +4,7 @@ RSpec.describe OrderAddress, type: :model do
   before do
     @user = FactoryBot.build(:user)
     @item = FactoryBot.build(:item)
-    @order_address = FactoryBot.build(:order_address, user_id: @user.id, item_id: @item.id)
+    @order_address = FactoryBot.build(:order_address)
   end
 
   describe '購入' do
@@ -70,10 +70,28 @@ RSpec.describe OrderAddress, type: :model do
         expect(@order_address.errors.full_messages).to include("Telephone is invalid. Input only number")
       end
 
+      it '電話番号が12桁以上だと購入できない' do
+        @order_address.telephone = '0901111111111'
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Telephone is too short")
+      end
+
       it 'tokenが空では登録できない' do
         @order_address.token = ''
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Token can't be blank")
+      end
+
+      it 'user_idが空では登録できない' do
+        @order_address.user_id = ''
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("User can't be blank")
+      end
+
+      it 'tokenが空では登録できない' do
+        @order_address.item_id = ''
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Item can't be blank")
       end
 
     end
